@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+const double PI = 3.1415;
+class Container
+{
+public:
+	virtual  double surface()const = 0;
+	virtual  double volume() const = 0;
+	//virtual void print()const = 0;
+};
+class Cube:public Container
+{
+private:
+	double bc;
+public:
+	Cube(double a):bc(a)
+	{}
+	double surface()const;
+	double volume() const;
+	//void print()const;
+};
+class Sphere :public Container
+{
+private:
+	double radius;
+public:
+	Sphere(double r) :radius(r)
+	{}
+	double surface()const;
+	double volume() const;
+	//void print()const;
+};
+class Cylinder:public Container
+{
+private:
+	double radius, height;
+public:
+	Cylinder(double r, double h) :radius(r), height(h)
+	{}
+	double surface()const;
+	double volume() const;
+	//void print()const;
+};
+double Cube::surface() const
+{
+	return 6 * bc * bc;
+}
+double Cube::volume() const
+{
+	return bc * bc * bc;
+}
+/*void Cube::print() const
+{
+	cout << "立方体的面积是：" << Cube::surface << endl;
+	cout << "立方体的体积是：" << Cube::volume << endl;
+}*/
+double Sphere::surface() const
+{
+	return 4 * PI * radius * radius;
+}
+double Sphere::volume() const
+{
+	return 4.0 / 3.0 * PI*radius * radius * radius;
+}
+/*void Sphere::print() const
+{
+	cout << "球体的面积是：" << Sphere::surface << endl;
+	cout << "球体的体积是：" << Sphere::volume << endl;
+}*/
+double Cylinder::surface() const
+{
+	return 2 * PI * radius * radius + 2 * PI * radius * height;
+}
+double Cylinder::volume() const
+{
+	return PI * radius * radius * height;
+}
+/*void Cylinder::print() const
+{
+	cout << "圆柱体的面积是：" << Cylinder::surface << endl;
+	cout << "圆柱体的体积是：" << Cylinder::volume << endl;
+}*/
+void TopPrint(Container & r)
+{
+	//cout << r->surface() << "," << r->volume() << endl;
+	cout << r.surface() << "," << r.volume() << endl;
+}
+int main()
+{
+
+	
+	Cube obj1(1);
+	Sphere obj2(2);
+	Cylinder obj3(1,3);
+	//r = &obj1;
+	cout << "Cube surface and volume"<<"\n";
+	TopPrint(obj1);
+	/*r = &obj2;
+	cout << "Sphere surface and volume" << "\n";
+	TopPrint(r);
+	cout << "Cylinder surface and volume" << "\n";
+	r = &obj3;
+	TopPrint(r);*/
+	return 0;
+}
